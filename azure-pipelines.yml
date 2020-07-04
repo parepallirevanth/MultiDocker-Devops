@@ -1,10 +1,4 @@
 # Docker
-- task: AzureCLI@2
-  inputs:
-    azureSubscription: 'Azure subscription 1(e59b8928-47d9-474b-b240-106138563ad5)'
-    scriptType: 'bash'
-    scriptLocation: 'inlineScript'
-    inlineScript: 'az webapp restart --name DockerMultiContainer --resource-group WebAppRG'
 # Build and push an image to Azure Container Registry
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
@@ -43,3 +37,9 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'Azure subscription 1(e59b8928-47d9-474b-b240-106138563ad5)'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az webapp restart --name DockerMultiContainer --resource-group WebAppRG'
